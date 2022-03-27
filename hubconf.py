@@ -29,7 +29,7 @@ def model_net(pretrained = False, **kwargs):
   if pretrained:
     dirname = os.path.dirname(__file__)
     checkpoint = os.path.join(dirname, 'weights/save.pth')
-    state_dict = thload(checkpoint)
+    state_dict = tload(checkpoint)
     model.load_state_dict(state_dict)
 
   return model
