@@ -1,5 +1,5 @@
 from torch import flatten
-from torch.hub import load as thload
+from torch import load as tload
 import torch.nn as nn
 import torch.nn.functional as F
 import os
