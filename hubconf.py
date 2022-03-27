@@ -1,5 +1,4 @@
-dependencies = ['torch']
-import torch
+from torch import load, flatten
 import torch.nn as nn
 import torch.nn.functional as F
 import os
@@ -18,7 +17,7 @@ def model_net(pretrained = False, **kwargs):
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))
         x = self.pool(F.relu(self.conv2(x)))
-        x = torch.flatten(x, 1) # flatten all dimensions except batch
+        x = flatten(x, 1) # flatten all dimensions except batch
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         x = self.fc3(x)
@@ -29,7 +28,7 @@ def model_net(pretrained = False, **kwargs):
   if pretrained:
     dirname = os.path.dirname(__file__)
     checkpoint = os.path.join(dirname, 'weights/save.pth')
-    state_dict = torch.load(checkpoint)
+    state_dict = load(checkpoint)
     model.load_state_dict(state_dict)
 
   return model
